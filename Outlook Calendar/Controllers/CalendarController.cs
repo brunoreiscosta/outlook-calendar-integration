@@ -10,7 +10,7 @@ namespace Outlook_Calendar.Controllers
 {
     public class CalendarController : Controller
     {
-        string tokensFile = "C:\\Users\\User Name\\Desktop\\Outlook Calendar\\Outlook Calendar\\Files\\tokens.json";
+        string tokensFile = "D:\\Projetos\\outlook-calendar-integration\\Outlook Calendar\\Files\\tokens.json";
 
         public ActionResult CreateEvent(CalendarEvent calendarEvent)
         {
@@ -23,7 +23,7 @@ namespace Outlook_Calendar.Controllers
             restRequest.AddHeader("Content-Type", "application/json");
             restRequest.AddParameter("application/json", JsonConvert.SerializeObject(calendarEvent), ParameterType.RequestBody);
 
-            restClient.BaseUrl = new Uri("https://graph.microsoft.com/v1.0/me/calendar/events");
+            restClient.BaseUrl = new Uri("https://graph.microsoft.com/v1.0/me/calendar/events");//Verificar no lugar do "me" colocar qualquer usuario
             var response = restClient.Post(restRequest);
 
             if (response.StatusCode == System.Net.HttpStatusCode.Created)
